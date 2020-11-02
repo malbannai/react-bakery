@@ -19,6 +19,12 @@ const newReleases = [
       "https://www.onceuponachef.com/images/2016/10/Perfect-Apple-Pie-1200x795.jpg",
     price: 4,
   },
+  {
+    name: "Lemon Cake",
+    image:
+      "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2003/9/29/0/ig1a08_lemon_cake.jpg.rend.hgtvcom.616.462.suffix/1391987296604.jpeg",
+    price: 6,
+  },
 ];
 
 export default newReleases;
