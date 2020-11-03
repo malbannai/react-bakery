@@ -3,7 +3,7 @@ import styled, { createGlobalStyle } from "styled-components";
 const GlobalStayle = createGlobalStyle`
 body{
     padding: 0;
-    background-color: #fed8b1;
+    background-color: ${(props) => props.theme.backgroundColor};
 }
 `;
 const Title = styled.h1`
@@ -40,6 +40,11 @@ const Card = styled.div`
   border-radius: 10px;
   width: 16%;
   overflow: hidden;
+
+  h3 {
+    text-align: center;
+    font-family: "Lucida Console";
+  }
 
   p {
     text-align: center;
