@@ -28,6 +28,14 @@ const theme = {
     mainTextColor: "#0b090a",
     cardsBackground: "#8ECAE6",
   },
+
+  Tester: {
+    backgroundColor: "#FFB703",
+    subTitleColor: "#660708",
+    mainColor: "#660708",
+    mainTextColor: "#0b090a",
+    cardsBackground: "#8ECAE6",
+  },
 };
 
 function App() {
