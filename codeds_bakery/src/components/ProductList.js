@@ -2,15 +2,27 @@ import React from "react";
 import NewItem from "./ProductItem";
 import newReleases from "../newReleases";
 import { SubTitle, CardList, ListWrapper } from "./styles";
+import { useState } from "react";
+
+import SearchBar from "./SearchBar";
 
 function NewReleases() {
-  const releases = newReleases.map((element) => <NewItem element={element} />);
+  const [query, setQuery] = useState("");
+  const filteredElements = newReleases.filter((element) =>
+    element.name.toLowerCase().includes(query.toLowerCase())
+  );
+  const releases = filteredElements.map((element) => (
+    <NewItem element={element} />
+  ));
 
   return (
-    <ListWrapper>
-      <SubTitle>New Releases</SubTitle>
-      <CardList> {releases}</CardList>
-    </ListWrapper>
+    <>
+      <SearchBar setQuery={setQuery} />
+      <ListWrapper>
+        <SubTitle>New Releases</SubTitle>
+        <CardList> {releases}</CardList>
+      </ListWrapper>
+    </>
   );
 }
 export default NewReleases;

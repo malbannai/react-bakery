@@ -8,19 +8,28 @@ body{
 `;
 const Title = styled.h1`
   text-align: center;
-  color: red;
+  color: ${(props) => props.theme.mainColor};
 `;
+
+// const ThemeButton = styled.button`
+//   font-size: 1em;
+//   margin: 1.25em;
+//   padding: 0.25em 1em;
+//   border-radius: 3px;
+//   background-color: ${(props) => props.theme.mainColor};
+//   color: ${(props) => props.theme.mainTextColor};
+// `;
 
 const SubTitle = styled.h3`
   text-align: center;
   font-family: "Lucida Console";
-  color: orange;
+  color: ${(props) => props.theme.subTitleColor};
 `;
 
 const MainImage = styled.img`
   display: block;
   margin: auto;
-  width: 50%;
+  width: 30%;
 `;
 
 const ListWrapper = styled.div`
@@ -34,9 +43,16 @@ const CardList = styled.div`
   height: 30%;
 `;
 
+const SearchBarStyled = styled.input`
+  padding: 0.5rem;
+  margin: 1rem auto;
+  display: block;
+  width: 40%;
+`;
+
 const Card = styled.div`
   margin: 2%;
-  background: white;
+  background: ${(props) => props.theme.cardsBackground};
   border-radius: 10px;
   width: 16%;
   overflow: hidden;
@@ -67,4 +83,6 @@ export {
   CardList,
   Card,
   ListWrapper,
+  // ThemeButton,
+  SearchBarStyled,
 };
