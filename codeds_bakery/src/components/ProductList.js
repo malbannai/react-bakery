@@ -6,13 +6,13 @@ import { useState } from "react";
 
 import SearchBar from "./SearchBar";
 
-function NewReleases() {
+function ProductList(props) {
   const [query, setQuery] = useState("");
   const filteredElements = newReleases.filter((element) =>
     element.name.toLowerCase().includes(query.toLowerCase())
   );
   const releases = filteredElements.map((element) => (
-    <NewItem element={element} />
+    <NewItem element={element} setProduct={props.setProduct} />
   ));
 
   return (
@@ -25,4 +25,4 @@ function NewReleases() {
     </>
   );
 }
-export default NewReleases;
+export default ProductList;

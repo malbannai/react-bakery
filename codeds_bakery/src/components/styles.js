@@ -75,6 +75,29 @@ const Card = styled.div`
   }
 `;
 
+const DetailWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  margin-top: 10px;
+  width: 70%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+
+  h1 {
+    text-align: center;
+  }
+  img {
+    width: 40%;
+  }
+
+  p {
+    text-align: center;
+  }
+`;
+
 export {
   GlobalStayle,
   Title,
@@ -85,4 +108,5 @@ export {
   ListWrapper,
   // ThemeButton,
   SearchBarStyled,
+  DetailWrapper,
 };

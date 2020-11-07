@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import { useState } from "react";
 import "./App.css";
 import ProductList from "./components/ProductList";
+import ProductDetail from "./components/ProductDetail";
 import { GlobalStayle, Title, SubTitle, MainImage } from "./components/styles";
 import { ThemeProvider } from "styled-components";
 import Radio from "@material-ui/core/Radio";
+import newReleases from "./newReleases";
 
 const theme = {
   Light: {
@@ -35,7 +37,17 @@ function App() {
   const toggleTheme = (choice) => {
     setCurrentTheme(choice.target.value);
   };
-  // setCurrentTheme(currentTheme === "Light" ? "Dark" : "Light");
+
+  //Selecting an item
+  const [product, setProduct] = useState(null);
+
+  // Selecting the view
+  const myView = () => {
+    if (product)
+      return <ProductDetail product={product} setProduct={setProduct} />;
+    return <ProductList setProduct={setProduct} />;
+  };
+
   return (
     <ThemeProvider theme={theme[currentTheme]}>
       <GlobalStayle />
@@ -61,7 +73,8 @@ function App() {
       <Title>Codeds Bakery</Title>
       <SubTitle>A place were your Brain can Refresh</SubTitle>
       <MainImage src="https://thumbs.dreamstime.com/b/bakery-shop-building-facade-signboard-baking-store-cafe-bread-pastry-dessert-shop-showcases-various-bread-cakes-159414926.jpg" />
-      <ProductList />
+
+      {myView()}
     </ThemeProvider>
   );
 }
