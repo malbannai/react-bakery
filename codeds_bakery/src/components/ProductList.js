@@ -1,18 +1,25 @@
 import React from "react";
 import NewItem from "./ProductItem";
-import newReleases from "../newReleases";
 import { SubTitle, CardList, ListWrapper } from "./styles";
 import { useState } from "react";
 
 import SearchBar from "./SearchBar";
 
 function ProductList(props) {
+  // State
   const [query, setQuery] = useState("");
-  const filteredElements = newReleases.filter((element) =>
+
+  //The search
+  const filteredElements = props.list.filter((element) =>
     element.name.toLowerCase().includes(query.toLowerCase())
   );
+  //The list of items
   const releases = filteredElements.map((element) => (
-    <NewItem element={element} setProduct={props.setProduct} />
+    <NewItem
+      element={element}
+      setProduct={props.setProduct}
+      DeleteItem={props.DeleteItem}
+    />
   ));
 
   return (

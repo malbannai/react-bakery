@@ -41,11 +41,33 @@ function App() {
   //Selecting an item
   const [product, setProduct] = useState(null);
 
+  // The delete team
+  // My List
+  const [_elements, setElements] = useState(newReleases);
+
+  // Delete
+  const DeleteItem = (elementName) => {
+    const updatedList = _elements.filter((item) => item.name !== elementName);
+    setElements(updatedList);
+  };
+
   // Selecting the view
   const myView = () => {
     if (product)
-      return <ProductDetail product={product} setProduct={setProduct} />;
-    return <ProductList setProduct={setProduct} />;
+      return (
+        <ProductDetail
+          product={product}
+          setProduct={setProduct}
+          DeleteItem={DeleteItem}
+        />
+      );
+    return (
+      <ProductList
+        list={_elements}
+        setProduct={setProduct}
+        DeleteItem={DeleteItem}
+      />
+    );
   };
 
   return (
