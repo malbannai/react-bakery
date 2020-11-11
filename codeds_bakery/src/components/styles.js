@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { NavLink } from "react-router-dom";
 
 const GlobalStayle = createGlobalStyle`
 body{
@@ -95,6 +96,15 @@ const DetailWrapper = styled.div`
 
   p {
     text-align: center;
+  }
+`;
+
+export const NavItem = styled(NavLink)`
+  padding: 0.25em 1em;
+  color: "pink";
+
+  &.active {
+    background-color: "pink";
   }
 `;
 

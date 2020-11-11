@@ -1,12 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
 import { useState } from "react";
 import "./App.css";
 import ProductList from "./components/ProductList";
 import ProductDetail from "./components/ProductDetail";
-import { GlobalStayle, Title, SubTitle, MainImage } from "./components/styles";
+import { GlobalStayle } from "./components/styles";
 import { ThemeProvider } from "styled-components";
-import Radio from "@material-ui/core/Radio";
+
 import newReleases from "./newReleases";
+import Home from "./components/Home";
+import { Route, Switch } from "react-router";
+import { Link } from "react-router-dom";
+import NavBar from "./components/NavBar";
 
 const theme = {
   Light: {
@@ -33,14 +37,8 @@ const theme = {
 };
 
 function App() {
+  //Theme
   const [currentTheme, setCurrentTheme] = useState("Light");
-  const toggleTheme = (choice) => {
-    setCurrentTheme(choice.target.value);
-  };
-
-  //Selecting an item
-  const [product, setProduct] = useState(null);
-
   // The delete team
   // My List
   const [_elements, setElements] = useState(newReleases);
@@ -51,54 +49,42 @@ function App() {
     setElements(updatedList);
   };
 
-  // Selecting the view
-  const myView = () => {
-    if (product)
-      return (
-        <ProductDetail
-          product={product}
-          setProduct={setProduct}
-          DeleteItem={DeleteItem}
-        />
-      );
-    return (
-      <ProductList
-        list={_elements}
-        setProduct={setProduct}
-        DeleteItem={DeleteItem}
-      />
-    );
-  };
-
   return (
     <ThemeProvider theme={theme[currentTheme]}>
       <GlobalStayle />
-      <span>Theme:: </span>
-      <span>Light :</span>
-      <Radio
-        value="Light"
-        checked={currentTheme === "Light"}
-        onChange={toggleTheme}
-      />
-      <span>Dark :</span>
-      <Radio
-        value="Dark"
-        checked={currentTheme === "Dark"}
-        onChange={toggleTheme}
-      />
-      <span>Hasan :</span>
-      <Radio
-        value="Hasan"
-        checked={currentTheme === "Hasan"}
-        onChange={toggleTheme}
-      />
-      <Title>Codeds Bakery</Title>
-      <SubTitle>A place were your Brain can Refresh</SubTitle>
-      <MainImage src="https://thumbs.dreamstime.com/b/bakery-shop-building-facade-signboard-baking-store-cafe-bread-pastry-dessert-shop-showcases-various-bread-cakes-159414926.jpg" />
-
-      {myView()}
+      <NavBar currentTheme={currentTheme} setCurrentTheme={setCurrentTheme} />
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/items/:itemId">
+          <ProductDetail product={_elements} DeleteItem={DeleteItem} />
+        </Route>
+        <Route path="/items">
+          <ProductList list={_elements} DeleteItem={DeleteItem} />
+        </Route>
+      </Switch>
     </ThemeProvider>
   );
 }
 
 export default App;
+
+// Selecting the view
+// const myView = () => {
+//   if (product)
+//     return (
+// <ProductDetail
+//   product={product}
+//   setProduct={setProduct}
+//   DeleteItem={DeleteItem}
+// />
+//     );
+//   return (
+//     <ProductList
+//       list={_elements}
+//       setProduct={setProduct}
+//       DeleteItem={DeleteItem}
+//     />
+//   );
+// };

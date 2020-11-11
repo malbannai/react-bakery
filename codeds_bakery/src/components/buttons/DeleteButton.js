@@ -3,7 +3,6 @@ import React from "react";
 const DeleteButton = (props) => {
   const handleDelete = () => {
     props.DeleteItem(props.itemID);
-    props.setProduct();
   };
 
   return (
