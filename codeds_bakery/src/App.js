@@ -5,11 +5,9 @@ import ProductList from "./components/ProductList";
 import ProductDetail from "./components/ProductDetail";
 import { GlobalStayle } from "./components/styles";
 import { ThemeProvider } from "styled-components";
-
 import newReleases from "./newReleases";
 import Home from "./components/Home";
 import { Route, Switch } from "react-router";
-import { Link } from "react-router-dom";
 import NavBar from "./components/NavBar";
 
 const theme = {
@@ -49,6 +47,11 @@ function App() {
     setElements(updatedList);
   };
 
+  //Creating a product
+  const createProduct = (newProduct) => {
+    setElements([..._elements, newProduct]);
+  };
+
   return (
     <ThemeProvider theme={theme[currentTheme]}>
       <GlobalStayle />
@@ -61,7 +64,11 @@ function App() {
           <ProductDetail product={_elements} DeleteItem={DeleteItem} />
         </Route>
         <Route path="/items">
-          <ProductList list={_elements} DeleteItem={DeleteItem} />
+          <ProductList
+            list={_elements}
+            DeleteItem={DeleteItem}
+            createProduct={createProduct}
+          />
         </Route>
       </Switch>
     </ThemeProvider>

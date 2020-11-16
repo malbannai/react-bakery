@@ -5,26 +5,26 @@ import { useState } from "react";
 
 import SearchBar from "./SearchBar";
 
-function ProductList(props) {
+// Add button
+import AddButton from "./buttons/AddButton";
+
+function ProductList({ list, createProduct, DeleteItem }) {
   // State
   const [query, setQuery] = useState("");
 
   //The search
-  const filteredElements = props.list.filter((element) =>
+  const filteredElements = list.filter((element) =>
     element.name.toLowerCase().includes(query.toLowerCase())
   );
   //The list of items
   const releases = filteredElements.map((element) => (
-    <NewItem
-      element={element}
-      setProduct={props.setProduct}
-      DeleteItem={props.DeleteItem}
-    />
+    <NewItem element={element} DeleteItem={DeleteItem} />
   ));
 
   return (
     <>
       <SearchBar setQuery={setQuery} />
+      <AddButton createProduct={createProduct} />
       <ListWrapper>
         <SubTitle>New Releases</SubTitle>
         <CardList> {releases}</CardList>
