@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import { CreateButtonStyled } from "../styles";
+import productStore from "../../stores/productStore";
 
-const ProductModal = ({ isOpen, closeModal, createProduct }) => {
+const ProductModal = ({ isOpen, closeModal }) => {
   const [product, setProduct] = useState({
+    id: 0,
     name: "",
+    slug: "",
     price: 0,
     description: "",
     image: "",
@@ -18,15 +21,12 @@ const ProductModal = ({ isOpen, closeModal, createProduct }) => {
   // The submission
   const handleSubmit = (event) => {
     event.preventDefault();
-    createProduct(product);
+    productStore.createProduct(product);
     closeModal();
   };
+
   return (
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={closeModal}
-      createProduct={createProduct}
-    >
+    <Modal isOpen={isOpen} onRequestClose={closeModal}>
       <form onSubmit={handleSubmit}>
         <div className="form-group row">
           <div className="col-6">

@@ -1,8 +1,9 @@
 import React from "react";
+import productStore from "../../stores/productStore";
 
 const DeleteButton = (props) => {
   const handleDelete = () => {
-    props.DeleteItem(props.itemID);
+    productStore.DeleteItem(props.itemID);
   };
 
   return (

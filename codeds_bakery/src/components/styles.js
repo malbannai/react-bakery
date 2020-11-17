@@ -99,7 +99,7 @@ const DetailWrapper = styled.div`
   }
 `;
 
-export const NavItem = styled(NavLink)`
+const NavItem = styled(NavLink)`
   padding: 0.25em 1em;
   color: "pink";
 
@@ -118,6 +118,10 @@ const CreateButtonStyled = styled.button`
   }
 `;
 
+const UpdateButtonStyled = styled.p`
+  color: ${(props) => props.theme.pink};
+`;
+
 export {
   GlobalStayle,
   Title,
@@ -130,4 +134,6 @@ export {
   SearchBarStyled,
   DetailWrapper,
   CreateButtonStyled,
+  NavItem,
+  UpdateButtonStyled,
 };

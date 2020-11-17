@@ -2,7 +2,7 @@ import { useState } from "react";
 import ProductModal from "./ProductModal";
 import { BsPlusCircle } from "react-icons/bs";
 
-const AddButton = ({ createProduct }) => {
+const AddButton = () => {
   // Modal useState
   const [isOpen, setIsOpen] = useState(false);
 
@@ -12,11 +12,7 @@ const AddButton = ({ createProduct }) => {
 
   return (
     <>
-      <ProductModal
-        isOpen={isOpen}
-        closeModal={closeModal}
-        createProduct={createProduct}
-      />
+      <ProductModal isOpen={isOpen} closeModal={closeModal} />
       <BsPlusCircle size="2em" onClick={openModal} />
     </>
   );
