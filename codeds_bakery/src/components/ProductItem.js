@@ -3,6 +3,7 @@ import { Card, ListWrapper } from "./styles";
 import DeleteButton from "../components/buttons/DeleteButton";
 import { Link } from "react-router-dom";
 import UpdateButton from "./buttons/UpdateButton";
+import { observer } from "mobx-react";
 
 const NewItem = (props) => {
   const element = props.element;
@@ -15,10 +16,10 @@ const NewItem = (props) => {
       </ListWrapper>
       <h3>{element.name}</h3>
       <p>{element.price} KD</p>
-      <UpdateButton />
+      <UpdateButton element={element} />
       <DeleteButton itemID={element.name} />
     </Card>
   );
 };
 
-export default NewItem;
+export default observer(NewItem);

@@ -11,6 +11,7 @@ class ProductStore {
       newReleases: observable,
       createProduct: action,
       DeleteItem: action,
+      updateProduct: action,
     });
   }
 
@@ -26,6 +27,14 @@ class ProductStore {
     this.newReleases = this.newReleases.filter(
       (item) => item.name !== elementName
     );
+  };
+
+  //Update Products
+  updateProduct = (product) => {
+    const hold = this.newReleases.find((item) => item.id === product.id);
+
+    for (const key in hold) hold[key] = product[key];
+    hold.slug = slugify(hold.name);
   };
 }
 

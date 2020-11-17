@@ -3,15 +3,17 @@ import Modal from "react-modal";
 import { CreateButtonStyled } from "../styles";
 import productStore from "../../stores/productStore";
 
-const ProductModal = ({ isOpen, closeModal }) => {
-  const [product, setProduct] = useState({
-    id: 0,
-    name: "",
-    slug: "",
-    price: 0,
-    description: "",
-    image: "",
-  });
+const ProductModal = ({ isOpen, closeModal, oldProduct }) => {
+  const [product, setProduct] = useState(
+    oldProduct ?? {
+      id: 0,
+      name: "",
+      slug: "",
+      price: 0,
+      description: "",
+      image: "",
+    }
+  );
 
   // The set function
   const handleChange = (event) => {
@@ -21,7 +23,8 @@ const ProductModal = ({ isOpen, closeModal }) => {
   // The submission
   const handleSubmit = (event) => {
     event.preventDefault();
-    productStore.createProduct(product);
+    productStore[oldProduct ? "updateProduct" : "createProduct"](product);
+    // productStore.createProduct(product);
     closeModal();
   };
 
@@ -37,6 +40,7 @@ const ProductModal = ({ isOpen, closeModal }) => {
               className="form-control"
               name="name"
               onChange={handleChange}
+              value={product.name}
             />
           </div>
           <div className="col-6">
@@ -48,6 +52,7 @@ const ProductModal = ({ isOpen, closeModal }) => {
               className="form-control"
               name="price"
               onChange={handleChange}
+              value={product.price}
             />
           </div>
         </div>
@@ -59,6 +64,7 @@ const ProductModal = ({ isOpen, closeModal }) => {
             className="form-control"
             name="description"
             onChange={handleChange}
+            value={product.description}
           />
         </div>
         <div className="form-group">
@@ -69,10 +75,11 @@ const ProductModal = ({ isOpen, closeModal }) => {
             className="form-control"
             name="image"
             onChange={handleChange}
+            value={product.image}
           />
         </div>
         <CreateButtonStyled className="btn float-right">
-          Create
+          {oldProduct ? "Update" : "Create"}
         </CreateButtonStyled>
       </form>
     </Modal>
