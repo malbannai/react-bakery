@@ -17,7 +17,7 @@ const ProductModal = ({ isOpen, closeModal, oldProduct }) => {
 
   // The set function
   const handleChange = (event) => {
-    setProduct({ ...product, name: event.target.value });
+    setProduct({ ...product, [event.target.name]: event.target.value });
   };
 
   // The submission

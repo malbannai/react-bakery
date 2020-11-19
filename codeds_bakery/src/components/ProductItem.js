@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import UpdateButton from "./buttons/UpdateButton";
 import { observer } from "mobx-react";
 
-const NewItem = (props) => {
-  const element = props.element;
+const NewItem = ({ element }) => {
   return (
     <Card>
       <ListWrapper>

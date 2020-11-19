@@ -1,10 +1,11 @@
 import newReleases from "../newReleases";
 import { makeObservable, observable, action } from "mobx";
 import slugify from "react-slugify";
+import axios from "axios";
 
 class ProductStore {
   // My main data list
-  newReleases = newReleases;
+  newReleases = [];
 
   constructor() {
     makeObservable(this, {
@@ -12,8 +13,19 @@ class ProductStore {
       createProduct: action,
       DeleteItem: action,
       updateProduct: action,
+      fetchList: action,
     });
   }
+
+  // Data comming from Express
+  fetchList = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/cookies");
+      this.newReleases = response.data;
+    } catch {
+      console.error("ERRRRRRRROOOOOOORRRRRRR");
+    }
+  };
 
   //Creating a product
   createProduct = (newProduct) => {
@@ -39,4 +51,5 @@ class ProductStore {
 }
 
 const productStore = new ProductStore();
+productStore.fetchList();
 export default productStore;

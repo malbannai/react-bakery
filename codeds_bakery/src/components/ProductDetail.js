@@ -10,7 +10,7 @@ import UpdateButton from "./buttons/UpdateButton";
 
 // Store
 import productStore from "../stores/productStore";
-const ProductDetail = (props) => {
+const ProductDetail = () => {
   const selected = useParams().itemId;
   const element = productStore.newReleases.find(
     (item) => selected === item.slug

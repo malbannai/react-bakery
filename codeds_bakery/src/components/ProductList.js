@@ -17,7 +17,7 @@ import productStore from "../stores/productStore";
 // Observer
 import { observer } from "mobx-react";
 
-function ProductList({ list, createProduct, DeleteItem }) {
+function ProductList({ createProduct, DeleteItem }) {
   // State
   const [query, setQuery] = useState("");
 
