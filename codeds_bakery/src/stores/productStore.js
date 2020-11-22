@@ -28,10 +28,17 @@ class ProductStore {
   };
 
   //Creating a product
-  createProduct = (newProduct) => {
-    newProduct.id = newReleases[newReleases.length - 1].id + 1;
-    newProduct.slug = slugify(newProduct.name);
-    this.newReleases.push(newProduct);
+  createProduct = async (newProduct) => {
+    // newProduct.id = newReleases[newReleases.length - 1].id + 1;
+    // newProduct.slug = slugify(newProduct.name);
+    // this.newReleases.push(newProduct);
+
+    try {
+      const res = await axios.post("http://localhost:8000/items", newProduct);
+      this.newReleases.push(res.data);
+    } catch (error) {
+      console.error("ERRROORRR with the create method");
+    }
   };
 
   // Delete
