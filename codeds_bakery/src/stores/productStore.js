@@ -54,11 +54,15 @@ class ProductStore {
   };
 
   //Update Products
-  updateProduct = (product) => {
-    const hold = this.newReleases.find((item) => item.id === product.id);
-
-    for (const key in hold) hold[key] = product[key];
-    hold.slug = slugify(hold.name);
+  updateProduct = async (product) => {
+    // hold.slug = slugify(hold.name);
+    try {
+      await axios.put(`http://localhost:8000/items/${product.id}`, product);
+      const hold = this.newReleases.find((item) => item.id === product.id);
+      for (const key in hold) hold[key] = product[key];
+    } catch (error) {
+      console.log("ERROOORRR with Updating the item!!!");
+    }
   };
 }
 
