@@ -24,7 +24,7 @@ const ProductDetail = () => {
       <p>{element.description}</p>
       <p>{element.price} KD</p>
       <UpdateButton element={element} />
-      <DeleteButton itemID={element.name} />
+      <DeleteButton itemID={element.id} />
     </DetailWrapper>
   );
 };

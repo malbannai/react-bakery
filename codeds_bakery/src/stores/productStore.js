@@ -20,7 +20,7 @@ class ProductStore {
   // Data comming from Express
   fetchList = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/cookies");
+      const response = await axios.get("http://localhost:8000/items");
       this.newReleases = response.data;
     } catch {
       console.error("ERRRRRRRROOOOOOORRRRRRR");
@@ -35,10 +35,15 @@ class ProductStore {
   };
 
   // Delete
-  DeleteItem = (elementName) => {
-    this.newReleases = this.newReleases.filter(
-      (item) => item.name !== elementName
-    );
+  DeleteItem = async (elementID) => {
+    try {
+      await axios.delete(`http://localhost:8000/items/${elementID}`);
+      this.newReleases = this.newReleases.filter(
+        (item) => item.id !== elementID
+      );
+    } catch (error) {
+      console.error("ERROOORRR with deleting the item!!!");
+    }
   };
 
   //Update Products

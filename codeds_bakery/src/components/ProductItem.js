@@ -16,7 +16,7 @@ const NewItem = ({ element }) => {
       <h3>{element.name}</h3>
       <p>{element.price} KD</p>
       <UpdateButton element={element} />
-      <DeleteButton itemID={element.name} />
+      <DeleteButton itemID={element.id} />
     </Card>
   );
 };
