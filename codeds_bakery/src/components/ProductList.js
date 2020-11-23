@@ -17,7 +17,7 @@ import productStore from "../stores/productStore";
 // Observer
 import { observer } from "mobx-react";
 
-function ProductList({ createProduct, DeleteItem }) {
+function ProductList() {
   // State
   const [query, setQuery] = useState("");
 
@@ -28,13 +28,13 @@ function ProductList({ createProduct, DeleteItem }) {
 
   //The list of items
   const releases = filteredElements.map((element) => (
-    <NewItem element={element} DeleteItem={DeleteItem} />
+    <NewItem element={element} key={element.id} />
   ));
 
   return (
     <>
       <SearchBar setQuery={setQuery} />
-      <AddButton createProduct={createProduct} />
+      <AddButton />
       <ListWrapper>
         <SubTitle>New Releases</SubTitle>
         <CardList> {releases}</CardList>
