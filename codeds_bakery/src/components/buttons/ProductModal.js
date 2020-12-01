@@ -6,9 +6,7 @@ import productStore from "../../stores/productStore";
 const ProductModal = ({ isOpen, closeModal, oldProduct }) => {
   const [product, setProduct] = useState(
     oldProduct ?? {
-      id: 0,
       name: "",
-      slug: "",
       price: 0,
       description: "",
       image: "",
@@ -20,6 +18,10 @@ const ProductModal = ({ isOpen, closeModal, oldProduct }) => {
     setProduct({ ...product, [event.target.name]: event.target.value });
   };
 
+  // The setting image function
+  const handleImage = (event) => {
+    setProduct({ ...product, image: event.target.files[0] });
+  };
   // The submission
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -71,11 +73,10 @@ const ProductModal = ({ isOpen, closeModal, oldProduct }) => {
           <label>Image</label>
           <input
             required
-            type="text"
             className="form-control"
             name="image"
-            onChange={handleChange}
-            value={product.image}
+            onChange={handleImage}
+            type="file"
           />
         </div>
         <CreateButtonStyled className="btn float-right">

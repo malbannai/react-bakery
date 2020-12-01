@@ -34,7 +34,9 @@ class ProductStore {
     // this.newReleases.push(newProduct);
 
     try {
-      const res = await axios.post("http://localhost:8000/items", newProduct);
+      const formData = new FormData();
+      for (const key in newProduct) formData.append(key, newProduct[key]);
+      const res = await axios.post("http://localhost:8000/items", formData);
       this.newReleases.push(res.data);
     } catch (error) {
       console.error("ERRROORRR with the create method");
@@ -57,9 +59,12 @@ class ProductStore {
   updateProduct = async (product) => {
     // hold.slug = slugify(hold.name);
     try {
-      await axios.put(`http://localhost:8000/items/${product.id}`, product);
+      const formData = new FormData();
+      for (const key in product) formData.append(key, product[key]);
+      await axios.put(`http://localhost:8000/items/${product.id}`, formData);
       const hold = this.newReleases.find((item) => item.id === product.id);
       for (const key in hold) hold[key] = product[key];
+      hold.image = URL.createObjectURL(product.image);
     } catch (error) {
       console.log("ERROOORRR with Updating the item!!!");
     }
