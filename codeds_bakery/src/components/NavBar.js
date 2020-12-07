@@ -8,6 +8,7 @@ import logo from "../../src/bakery.png";
 import Radio from "@material-ui/core/Radio";
 import { Link } from "react-router-dom";
 import { NavItem } from "./styles";
+import SignupButton from "./buttons/SignupButton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,6 +45,7 @@ export default function NavBar({ currentTheme, setCurrentTheme }) {
               <NavItem to="/items">Items</NavItem>
             </Button>
           </Typography>
+          <SignupButton />
           <Button color="inherit">
             <span>Light Theme:</span>
             <Radio
